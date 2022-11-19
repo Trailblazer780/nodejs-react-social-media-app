@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
@@ -9,6 +8,7 @@ const { graphqlHTTP } = require("express-graphql");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const auth = require("./middleware/auth");
+const { clearImage } = require("./util/file");
 const ENV_VAR = require("./env");
 
 const app = express();
@@ -65,7 +65,7 @@ app.put("/post-image", (req, res, next) => {
   }
   return res
     .status(201)
-    .json({ message: "File stored.", filePath: req.file.path });
+    .json({ message: "File stored.", filePath: req.file.path.replace("\\","/") });
 });
 
 app.use(
@@ -74,7 +74,7 @@ app.use(
     schema: graphqlSchema,
     rootValue: graphqlResolver,
     graphiql: true,
-    formatError(err) {
+    customFormatErrorFn(err) {
       if (!err.originalError) {
         return err;
       }
@@ -103,7 +103,4 @@ mongoose
     console.log(err);
   });
 
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, "..", filePath);
-  fs.unlink(filePath, (err) => console.log(err));
-};
+
