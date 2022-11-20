@@ -3,12 +3,12 @@
 This project was created with Node JS and Express JS and React JS
 ## Available Scripts
 
-## In the graph-api-backend, you can run:
+## In the graphql-api-backend, you can run:
 ### This will use port 8080
 ### `npm install`
 ### `npm start`
 
-## In the graph-api-frontend, you can run:
+## In the graphql-api-frontend, you can run:
 ### This will use port 3000
 ### `npm install`
 ### `npm start`
