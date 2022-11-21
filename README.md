@@ -13,7 +13,7 @@ This project was created with Node JS and Express JS and React JS
 ### `npm install`
 ### `npm start`
 
-## In the res-apit-backend, you can run:
+## In the rest-api-backend, you can run:
 ### This will use port 8080
 ### `npm install`
 ### `npm start`
